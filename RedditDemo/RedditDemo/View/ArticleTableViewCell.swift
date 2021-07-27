@@ -17,7 +17,7 @@ class ArticleTableViewCell: UITableViewCell {
     @IBOutlet weak var thumbnailImage: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var commentsLabel: UILabel!
 
     var imageFromUrlTask: URLSessionDataTask?
@@ -33,8 +33,8 @@ class ArticleTableViewCell: UITableViewCell {
     func configure(model: ArticleModel) {
         articleModel = model
         usernameLabel.text = model.author
-        timeLabel.text = model.created.description
-        descriptionLabel.text = model.title
+        timeLabel.text = model.createdDate().timeAgo()
+        titleLabel.text = model.title
         commentsLabel.text = String(model.num_comments)
         if let wasRead = model.wasRead {
             unreadImage.isHidden = wasRead
@@ -47,7 +47,7 @@ class ArticleTableViewCell: UITableViewCell {
         thumbnailImage.image = nil;
         usernameLabel.text = ""
         timeLabel.text = ""
-        descriptionLabel.text = ""
+        titleLabel.text = ""
         commentsLabel.text = ""
         imageFromUrlTask?.cancel()
     }
