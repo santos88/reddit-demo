@@ -23,6 +23,14 @@ struct ArticleModel: Codable, Equatable {
     func createdDate() -> Date {
         return Date(timeIntervalSince1970: created)
     }
+    
+    func authorFormatted() -> String {
+        return "@" + author
+    }
+    
+    func commentsFormatted() -> String {
+        return String(num_comments) + " Comments"
+    }
 }
 
 struct ArticlesServerResponse: Codable {

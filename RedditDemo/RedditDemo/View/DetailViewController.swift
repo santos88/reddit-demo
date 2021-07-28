@@ -11,9 +11,11 @@ class DetailViewController: UIViewController {
 
     var article:ArticleModel?
     var imageFromUrlTask: URLSessionDataTask?
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var mainImage: UIImageView!
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var commentsLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,8 +23,10 @@ class DetailViewController: UIViewController {
     }
     
     func configureView() {
-        self.usernameLabel.text = article?.author
-        self.descriptionLabel.text = article?.title
+        self.usernameLabel.text = article?.authorFormatted()
+        self.titleLabel.text = article?.title
+        self.timeLabel.text = article?.createdDate().timeAgo()
+        self.commentsLabel.text = article?.commentsFormatted()
         loadImage()
     }
     

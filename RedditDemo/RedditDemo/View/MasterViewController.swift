@@ -86,10 +86,11 @@ class MasterViewController: UITableViewController, ArticleCellProtocol {
         if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let model = presenter.cache[indexPath.row]
-                let vc = (segue.destination as! UINavigationController).topViewController as! DetailViewController
-                vc.article = model
-                vc.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
-                vc.navigationItem.leftItemsSupplementBackButton = true
+                if let vc = segue.destination as? DetailViewController {
+                    vc.article = model
+                    vc.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+                    vc.navigationItem.leftItemsSupplementBackButton = true
+                }
             }
         }
     }

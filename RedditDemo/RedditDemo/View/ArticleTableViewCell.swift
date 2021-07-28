@@ -32,10 +32,10 @@ class ArticleTableViewCell: UITableViewCell {
 
     func configure(model: ArticleModel) {
         articleModel = model
-        usernameLabel.text = model.author
+        usernameLabel.text = model.authorFormatted()
         timeLabel.text = model.createdDate().timeAgo()
         titleLabel.text = model.title
-        commentsLabel.text = String(model.num_comments)
+        commentsLabel.text = model.commentsFormatted()
         if let wasRead = model.wasRead {
             unreadImage.isHidden = wasRead
         }
@@ -54,7 +54,6 @@ class ArticleTableViewCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
     }
 
     @IBAction func tapDismiss(_ sender: Any) {
