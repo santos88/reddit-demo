@@ -8,11 +8,15 @@
 import Foundation
 
 class ArticlesPresenter {
-
+    let api: ArticlesAPIProtocol
     var cache = [ArticleModel]()
+    
+    init(api: ArticlesAPIProtocol) {
+        self.api = api
+    }
 
     func loadArticles(completion: @escaping ([ArticleModel]?, Error?) -> Void) {
-        ArticlesAPI().loadArticles(page: 1) { [weak self] (articles, error) in
+        api.loadArticles(page: 1) { [weak self] (articles, error) in
             if let records = articles {
                 self?.cache = records
             }

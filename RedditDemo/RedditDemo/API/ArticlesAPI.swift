@@ -7,14 +7,11 @@
 
 import Foundation
 
-// TODO
-// The purpose of this APIProtocol is to be replaced/injected on the Unit Tests
-// protocol APIProtocol {
-//    func fetchAll(completion: @escaping ([Any]?, Error?) -> Void)
-// }
+protocol ArticlesAPIProtocol {
+    func loadArticles(page:Int, completion: @escaping ([ArticleModel]?, Error?) -> Void)
+}
 
-class ArticlesAPI {
-    
+class ArticlesAPI: ArticlesAPIProtocol {
     func loadArticles(page:Int, completion: @escaping ([ArticleModel]?, Error?) -> Void) {
         
         let endpoint: String = "https://www.reddit.com/top/.json?count=20"

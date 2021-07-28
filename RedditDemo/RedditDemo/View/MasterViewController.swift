@@ -10,7 +10,7 @@ import UIKit
 class MasterViewController: UITableViewController, ArticleCellProtocol {
     
     var detailViewController: DetailViewController? = nil
-    var presenter = ArticlesPresenter()
+    var presenter = ArticlesPresenter(api: ArticlesAPI())
 
     override func viewDidLoad() {
         super.viewDidLoad()
